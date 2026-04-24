@@ -24,11 +24,33 @@ public class User extends AuditableEntity {
     @Column(nullable = false)
     private UserRole role;
 
-    @Column(nullable = false, unique = true)
-    private String joinCode;
-
     @Column(nullable = false)
     private boolean active = true;
+
+    protected User() {} 
+
+    private User(String email, String username, String password, UserRole role) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.active = true;
+    }
+
+    public static User create(String email, String username, String password, UserRole role) {
+        return new User(email, username, password, role);
+    }
+
+    public void updateUsername(String username) {
+        this.username = username;
+    }
+
+    public void updateEmail(String email) {
+    // aquí podrías agregar lógica específica, como marcar el email como no verificado
+        this.email = email;
+        // this.emailVerified = false;
+    }
+
 
     public String getEmail() {
         return email;
@@ -60,14 +82,6 @@ public class User extends AuditableEntity {
 
     public void setRole(UserRole role) {
         this.role = role;
-    }
-
-    public String getJoinCode() {
-        return joinCode;
-    }
-
-    public void setJoinCode(String joinCode) {
-        this.joinCode = joinCode;
     }
 
     public boolean isActive() {
