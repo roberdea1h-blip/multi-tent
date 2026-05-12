@@ -14,7 +14,5 @@ public interface  UserRepository extends JpaRepository<User, UUID> {
 
     boolean existsByUsername(String username);
 
-    Optional<User> findByJoinCode(String joinCode);
-
     List<User> findByActiveTrue();
 }

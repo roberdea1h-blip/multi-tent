@@ -1,14 +1,17 @@
 package com.multi.tent.pos_api.user.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+@Schema(description = "Request body for user registration")
 public class CreateUserDto {
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
     @Size(max = 100, message = "Email must not exceed 100 characters")
+    @Schema(description = "User email address", example = "user@example.com")
     private String email;
 
     @NotBlank(message = "Username is required")
@@ -17,10 +20,12 @@ public class CreateUserDto {
         regexp = "^[a-zA-Z0-9._]+$",
         message = "Username can only contain letters, numbers, dots and underscores"
     )
+    @Schema(description = "Unique username (letters, numbers, dots, underscores)", example = "john.doe")
     private String username;
 
     @NotBlank(message = "Password is required")
     @Size(min = 6, max = 20, message = "Password must be between 6 and 20 characters")
+    @Schema(description = "Account password", example = "secret123")
     private String password;
 
     public String getEmail() {

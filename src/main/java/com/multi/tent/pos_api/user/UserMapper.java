@@ -7,7 +7,7 @@ import com.multi.tent.pos_api.user.dto.UserResponseDto;
 
 @Component
 public class UserMapper {
-     public UserResponseDto toResponseDto(User user) {
+    public UserResponseDto toResponseDto(User user) {
         if (user == null) return null;
         UserResponseDto dto = new UserResponseDto();
         dto.setId(user.getId());

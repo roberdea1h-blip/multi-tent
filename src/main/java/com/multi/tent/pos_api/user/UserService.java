@@ -37,7 +37,7 @@ public class UserService {
                 userDto.getEmail(),
                 userDto.getUsername(),
                 encodedPassword,
-                UserRole.EMPLOYEE
+                UserRole.USER
         );
 
         userRepository.save(user);
@@ -59,12 +59,6 @@ public class UserService {
         user.updateEmail(newEmail);
         userRepository.save(user);
     }
-
-    public UserResponseDto me(UUID userId) {
-        User user = getUserById(userId);
-        return userMapper.toResponseDto(user);
-    }
-
 
     // Helper methods
     private User getUserById(UUID userId) {
